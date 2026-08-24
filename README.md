@@ -1,77 +1,78 @@
-# React + TypeScript + Vite
+# Lista de shopping
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada como práctica introductoria de React con TypeScript. Permite crear y administrar una lista de productos para una compra.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Agregar productos mediante un formulario.
+- Validar que el nombre del producto no esté vacío.
+- Mostrar la cantidad de productos pendientes.
+- Marcar productos como completados mediante un checkbox.
+- Eliminar productos de la lista.
+- Mantener los datos tipados mediante una interfaz `Product`.
 
-## React Compiler
+> La lista se almacena únicamente en el estado de React. Los productos se pierden al recargar la página.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Tecnologías
 
-Note: This will impact Vite dev & build performances.
+- [React 19](https://react.dev/) para construir la interfaz.
+- [TypeScript](https://www.typescriptlang.org/) para el tipado estático.
+- [Vite](https://vite.dev/) como servidor de desarrollo y herramienta de build.
+- [Tailwind CSS 4](https://tailwindcss.com/) para los estilos de la interfaz.
+- [React Hook Form](https://react-hook-form.com/) para gestionar y validar el formulario.
+- ESLint para analizar la calidad del código.
+- pnpm para administrar las dependencias.
 
-## Expanding the ESLint configuration
+## Requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 20 o superior.
+- pnpm instalado globalmente.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Para instalar pnpm, se puede utilizar:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+corepack enable
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Instalación
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clonar el repositorio y acceder a la carpeta del proyecto.
+2. Instalar las dependencias:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+```
 
+## Uso
+
+Iniciar el servidor de desarrollo:
+
+```bash
+pnpm dev
+```
+
+Luego abrir [http://localhost:8080](http://localhost:8080) en el navegador.
+
+## Scripts disponibles
+
+| Comando        | Descripción                                                            |
+| -------------- | ---------------------------------------------------------------------- |
+| `pnpm dev`     | Inicia Vite en modo desarrollo en el puerto `8080`.                    |
+| `pnpm build`   | Ejecuta la comprobación de TypeScript y genera la build de producción. |
+| `pnpm lint`    | Analiza el código con ESLint.                                          |
+| `pnpm preview` | Sirve localmente la build de producción.                               |
+
+## Estructura principal
+
+```text
+src/
+├── components/
+│   ├── CardShop.tsx   # Tarjeta de cada producto
+│   └── FormShop.tsx   # Formulario para agregar productos
+├── interfaces/
+│   └── products.ts    # Interfaz Product
+├── App.tsx            # Estado y lógica principal de la lista
+├── App.css
+├── index.css
+└── main.tsx           # Punto de entrada de React
 ```
