@@ -4,6 +4,7 @@ import type { Product } from "../interfaces/products";
 type CardProps = {
   product: Product;
   actualizarProducto: (id: number) => void;
+  borrarProducto: (id: number) => void;
 };
 const CardShop = ({ product, actualizarProducto }: CardProps) => {
   //asignamos el tipo de las props
