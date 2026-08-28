@@ -1,10 +1,10 @@
 //Definimos los tipos del objeto
-interface Product {
+export interface Product {
   id: number;
   nombre: string;
   check: boolean;
 }
 
-export type{
-    Product
-}
+// export type{
+//     Product
+// }
