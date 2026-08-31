@@ -2,7 +2,10 @@
 // Usamos un 'type' con unión de literales para limitar los temas válidos [4]
 export type User = {
     correo:string
-    password:string
+    password?:string,
+    id?:number,
+    rol?:string
+  
 }
 
 // Usamos una 'interface' para describir la forma del objeto del contexto [4]

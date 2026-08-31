@@ -16,7 +16,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     );
 
     if (validar) {
-      setUser({ ...validar });
+      const { correo, id, rol } = validar;
+      setUser({ correo, id, rol });
       return { ok: true };
     } else {
       return { ok: false };
