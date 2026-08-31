@@ -31,7 +31,7 @@ Aplicación web desarrollada como práctica introductoria de React con TypeScrip
 Para instalar pnpm, se puede utilizar:
 
 ```bash
-corepack enable
+npm install -g pnpm
 ```
 
 ## Instalación
