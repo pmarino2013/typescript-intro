@@ -6,7 +6,7 @@ type CardProps = {
   actualizarProducto: (id: number) => void;
   borrarProducto: (id: number) => void;
 };
-const CardShop = ({ product, actualizarProducto }: CardProps) => {
+const CardShop = ({ product, actualizarProducto, borrarProducto }: CardProps) => {
   //asignamos el tipo de las props
   const { nombre, id, check } = product;
   return (
@@ -23,7 +23,7 @@ const CardShop = ({ product, actualizarProducto }: CardProps) => {
             onChange={() => actualizarProducto(id)}
           />
         </form>
-        <button className="border-2 size-5 bg-red-600 border-red-600 flex justify-center items-center hover:scale-110 transition">
+        <button className="border-2 size-5 bg-red-600 border-red-600 flex justify-center items-center hover:scale-110 transition" onClick={()=>borrarProducto(id)}>
           <span className="text-red-50">X</span>
         </button>
       </div>
