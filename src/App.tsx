@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Product } from "./interfaces/products";
 import FormShop from "./components/FormShop";
 import CardShop from "./components/CardShop";
 
 const App = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>(() => {
+    const lista = localStorage.getItem("lista");
+
+    if (!lista) return [];
+
+    try {
+      const parsed: unknown = JSON.parse(lista);
+      return Array.isArray(parsed) ? (parsed as Product[]) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("lista", JSON.stringify(products));
+  }, [products]);
 
   const agregarProducto = (producto: Product): void => {
     //{id,nombre,check}
