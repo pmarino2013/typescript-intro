@@ -23,6 +23,7 @@ const FormShop = ({ agregarProducto }: FormShopProps) => {
       id: new Date().getTime(),
       nombre: data.nombre,
       check: false,
+      importe: 0,
     };
     agregarProducto(producto);
     resetField("nombre");

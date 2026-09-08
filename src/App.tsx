@@ -34,8 +34,17 @@ const App = () => {
     );
   };
 
-  const pendientes: number = products.filter((item) => !item.check).length;
+  const actualizarImporte = (id: number, valor: number): void => {
+    setProducts((prod) =>
+      prod.map((item) => (item.id === id ? { ...item, importe: valor } : item)),
+    );
+  };
 
+  const pendientes: number = products.filter((item) => !item.check).length;
+  const total: number = products.reduce(
+    (accum, valor) => accum + valor.importe,
+    0,
+  );
   return (
     <main className="bg-gray-100">
       <section className="min-h-screen flex flex-col justify-center items-center">
@@ -51,9 +60,13 @@ const App = () => {
             product={item}
             key={item.id}
             actualizarProducto={actualizarProducto}
+            actualizarImporte={actualizarImporte}
           />
         ))}
         {/* Tarjetas de productos  */}
+        <div className="w-80 text-end mt-3">
+          <p className="text-2xl font-bold text-green-700">$ {total}</p>
+        </div>
       </section>
     </main>
   );

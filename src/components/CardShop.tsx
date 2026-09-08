@@ -1,18 +1,41 @@
+import { useState, type ChangeEvent } from "react";
 import type { Product } from "../interfaces/products";
 
 //defino el tipo de los props
 type CardProps = {
   product: Product;
   actualizarProducto: (id: number) => void;
+  actualizarImporte: (id: number, valor: number) => void;
 };
-const CardShop = ({ product, actualizarProducto }: CardProps) => {
+const CardShop = ({
+  product,
+  actualizarProducto,
+  actualizarImporte,
+}: CardProps) => {
   //asignamos el tipo de las props
-  const { nombre, id, check } = product;
+  const { nombre, id, check, importe } = product;
+  const [importeProd, setImporteProd] = useState(importe);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setImporteProd(Number(e.target.value));
+    actualizarImporte(id, Number(e.target.value));
+  };
   return (
-    <article className="mt-3 bg-slate-50 rounded-md border-0 w-80 p-2 flex justify-between h-15 items-center transition hover:scale-105 shadow-md">
-      <span className={check ? "line-through" : ""}>
-        {nombre.toUpperCase()}
-      </span>
+    <article className="mt-3 bg-slate-50 rounded-md border-0 w-80 p-3 flex justify-between h-15 items-center transition hover:scale-105 shadow-md">
+      <div>
+        <span className={check ? "line-through" : ""}>
+          {nombre.toUpperCase()}
+        </span>
+        <div>
+          <span>$ </span>
+          <input
+            type="number"
+            className="border-0 outline-0 ring-0 rounded-b-md"
+            value={importeProd}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
       <div className="flex gap-2 justify-center">
         <form>
           <input
