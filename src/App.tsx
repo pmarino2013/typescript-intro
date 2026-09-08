@@ -40,11 +40,16 @@ const App = () => {
     );
   };
 
+  const borrarProducto = (id: number) => {
+    setProducts((prod) => prod.filter((item) => item.id != id));
+  };
+
   const pendientes: number = products.filter((item) => !item.check).length;
   const total: number = products.reduce(
     (accum, valor) => accum + valor.importe,
     0,
   );
+
   return (
     <main className="bg-gray-100">
       <section className="min-h-screen flex flex-col justify-center items-center">
@@ -61,12 +66,14 @@ const App = () => {
             key={item.id}
             actualizarProducto={actualizarProducto}
             actualizarImporte={actualizarImporte}
+            borrarProducto={borrarProducto}
           />
         ))}
-        {/* Tarjetas de productos  */}
-        <div className="w-80 text-end mt-3">
-          <p className="text-2xl font-bold text-green-700">$ {total}</p>
-        </div>
+        {total > 0 && (
+          <div className="w-80 text-end mt-3">
+            <p className="text-2xl font-bold text-green-700">$ {total}</p>
+          </div>
+        )}
       </section>
     </main>
   );
