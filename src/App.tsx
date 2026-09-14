@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Product } from "./interfaces/products";
 import FormShop from "./components/FormShop";
 import CardShop from "./components/CardShop";
+import logo from "./assets/carrito.png";
 
 const App = () => {
   const [products, setProducts] = useState<Product[]>(() => {
@@ -53,7 +54,8 @@ const App = () => {
   return (
     <main className="bg-gray-100">
       <section className="min-h-screen flex flex-col justify-center items-center">
-        <h1 className="text-2xl">Lista de shopping</h1>
+        <img src={logo} alt="logo " />
+        <h1 className="text-3xl mb-3 font-bold">Lista de shopping</h1>
         <div className="w-80 mb-1">
           <FormShop agregarProducto={agregarProducto} />
         </div>
