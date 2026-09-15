@@ -10,14 +10,17 @@ Aplicación web desarrollada como práctica introductoria de React con TypeScrip
 - Marcar productos como completados mediante un checkbox.
 - Eliminar productos de la lista.
 - Mantener los datos tipados mediante una interfaz `Product`.
+- Instalarse como aplicación en dispositivos compatibles.
+- Funcionar sin conexión después de la primera carga.
 
-> La lista se almacena únicamente en el estado de React. Los productos se pierden al recargar la página.
+> La lista se almacena únicamente en el navegador mediante `localStorage`. No se sincroniza entre dispositivos ni se respalda en un servidor.
 
 ## Tecnologías
 
 - [React 19](https://react.dev/) para construir la interfaz.
 - [TypeScript](https://www.typescriptlang.org/) para el tipado estático.
 - [Vite](https://vite.dev/) como servidor de desarrollo y herramienta de build.
+- [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) para generar el manifest y el service worker.
 - [Tailwind CSS 4](https://tailwindcss.com/) para los estilos de la interfaz.
 - [React Hook Form](https://react-hook-form.com/) para gestionar y validar el formulario.
 - ESLint para analizar la calidad del código.
@@ -52,6 +55,28 @@ pnpm dev
 ```
 
 Luego abrir [http://localhost:8080](http://localhost:8080) en el navegador.
+
+## Probar la PWA y el modo offline
+
+El service worker se genera durante la build de producción. Para probar la aplicación instalable:
+
+1. Generar la build:
+
+```bash
+pnpm build
+```
+
+2. Servir la build:
+
+```bash
+pnpm preview
+```
+
+3. Abrir la URL indicada por Vite. En las herramientas de desarrollador, entrar en `Application` y comprobar que el manifest y el service worker estén activos.
+4. Visitar la aplicación al menos una vez para que el navegador descargue sus recursos.
+5. Activar `Network > Offline` y recargar la página. La aplicación debe abrirse y permitir agregar, editar, completar y eliminar productos.
+
+La primera visita necesita conexión para descargar la aplicación. Después, el service worker utiliza la copia local de los archivos compilados. Los productos se conservan con `localStorage`, por lo que también siguen disponibles sin conexión en el mismo navegador. Una nueva build se incorpora automáticamente cuando el service worker detecta la actualización.
 
 ## Scripts disponibles
 
